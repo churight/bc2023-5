@@ -109,7 +109,7 @@
 					"raw": "abcdefghi"
 				},
 				"url": {
-					"raw": "http://localhost:8000/notes/note",
+					"raw": "http://localhost:8000/notes/note2",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -124,7 +124,7 @@
 			"response": []
 		},
 		{
-			"name": "DELETE /notes/note",
+			"name": "DELETE /notes/note2",
 			"request": {
 				"method": "DELETE",
 				"header": [],
