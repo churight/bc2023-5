@@ -49,6 +49,21 @@
 			"request": {
 				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "note_name",
+							"value": "note2",
+							"type": "text"
+						},
+						{
+							"key": "note",
+							"value": "2",
+							"type": "text"
+						}
+					]
+				},
 				"url": {
 					"raw": "http://localhost:8000/upload/",
 					"protocol": "http",
@@ -70,7 +85,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8000/notes/note",
+					"raw": "http://localhost:8000/notes/note2",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -89,6 +104,10 @@
 			"request": {
 				"method": "PUT",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "abcdefghi"
+				},
 				"url": {
 					"raw": "http://localhost:8000/notes/note",
 					"protocol": "http",
