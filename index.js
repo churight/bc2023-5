@@ -1,6 +1,6 @@
 const express = require("express"); //підключаю експерс
 const fs = require("fs"); // підключаю файлову систему
-const multer = require("multer"); //gslrk.xf. vekmnth
+const multer = require("multer"); 
 
 const upload = multer();
 const app = express();
@@ -20,11 +20,11 @@ app.get('/', (req, res) => { //вивід при запиті гет
 
 app.get('/notes', (req, res) => { // вивід нотаток
     try {
-        const data = fs.readFileSync(notesFile, 'utf8');  // чиатю файл
+        const data = fs.readFileSync(notesFile, 'utf8');  // читаю файл
         const notes = data ? JSON.parse(data) : [];  // парсую файл
         res.json(notes);  // виводжу результат
     } catch (e) {
-        res.status(500).send("error while reading notes");  // кетс на випадок помилки
+        res.status(500).send("error while reading notes");  
     }
 });
 
@@ -72,7 +72,7 @@ app.get('/notes/:noteName', (req, res) => {  // вивід нотатки з к�
     }
 });
 
-app.put('/notes/:noteName', express.text(), (req, res) => {  // змфна тексту нотатки
+app.put('/notes/:noteName', express.text(), (req, res) => { 
     const noteName = req.params.noteName;
     const note = req.body;
 
