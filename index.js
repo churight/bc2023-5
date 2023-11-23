@@ -28,8 +28,8 @@ app.get('/notes', (req, res) => { // вивід нотаток
     }
 });
 
-app.get('/UploadForm.html', (req, res) => {  // додавання нотаток 
-    const path = (__dirname + '/static/UploadForm.html');  // вивід форми
+app.get('/UploadForm.html', (req, res) => {  // додавання нотаток через форму
+    const path = (__dirname + '/UploadForm.html');  // вивід форми
     res.sendFile(path);
 })
 
