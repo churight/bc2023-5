@@ -26,7 +26,7 @@
 			"response": []
 		},
 		{
-			"name": "GET /UploadForm",
+			"name": "GET /UploadForm.html",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -45,16 +45,23 @@
 			"response": []
 		},
 		{
-			"name": "POST /upload",
+			"name": "POST /uploadForm",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "1",
+						"value": "gdgddfs",
+						"description": "note1",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "formdata",
 					"formdata": [
 						{
 							"key": "note_name",
-							"value": "note2",
+							"value": "1",
 							"type": "text"
 						},
 						{
@@ -80,12 +87,19 @@
 			"response": []
 		},
 		{
-			"name": "GET /notes/<ім'я нотатки>",
+			"name": "GET /notes/<ім’я нотатки>",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"method": "GET",
 				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
 				"url": {
-					"raw": "http://localhost:8000/notes/note2",
+					"raw": "http://localhost:8000/notes/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -93,23 +107,23 @@
 					"port": "8000",
 					"path": [
 						"notes",
-						"note"
+						"1"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "PUT /notes/note",
+			"name": "PUT /notes/<ім’я нотатки>",
 			"request": {
 				"method": "PUT",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "abcdefghi"
+					"raw": "smth"
 				},
 				"url": {
-					"raw": "http://localhost:8000/notes/note2",
+					"raw": "http://localhost:8000/notes/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -117,19 +131,19 @@
 					"port": "8000",
 					"path": [
 						"notes",
-						"note"
+						"1"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "DELETE /notes/note2",
+			"name": "DELETE /notes/<ім’я нотатки>",
 			"request": {
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8000/notes/note",
+					"raw": "http://localhost:8000/notes/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -137,9 +151,14 @@
 					"port": "8000",
 					"path": [
 						"notes",
-						"note"
+						"1"
 					]
 				}
+			},
+			"response": []
+		}
+	]
+}
 			},
 			"response": []
 		}
