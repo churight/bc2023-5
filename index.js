@@ -1,6 +1,6 @@
 const express = require("express"); //підключаю експерс
 const fs = require("fs"); // підключаю файлову систему
-const multer = require("multer"); 
+const multer = require("multer"); // підключаю мультер для роботи з файлами
 
 const upload = multer();
 const app = express();
@@ -11,12 +11,12 @@ if (!fs.existsSync(notesFile)) {
     fs.writeFileSync(notesFile, '[]');
 }
 
-app.get('/', (req, res) => { //вивід при запиті гет
+/*app.get('/', (req, res) => { //вивід при запиті гет
     res.send(`<h1>Запити</h1>
             1. /notes (всі нотатки) <b1>
             2. /UploadForm.html (форма для запису всіх нотатків) <b1>
             3. /notes/<note_name> (пошук окремого нотатку)<b1>`);
-})
+})*/
 
 app.get('/notes', (req, res) => { // вивід нотаток
     try {
@@ -28,24 +28,24 @@ app.get('/notes', (req, res) => { // вивід нотаток
     }
 });
 
-app.get('/UploadForm.html', (req, res) => {  // додавання нотаток через форму
-    const path = (__dirname + '/UploadForm.html');  // вивід форми
+app.get('/UploadForm.html', (req, res) => {  // додавання нотаток 
+    const path = (__dirname + '/static/UploadForm.html');  // вивід форми
     res.sendFile(path);
 })
 
-app.post('/upload', upload.fields([{ name: 'note_name' }, { name: 'note' }]), (req, res) => {  // завантадення нотаток
-    const { note_name, note } = req.body;
+app.post('/upload', upload.fields([{ name: 'note_name' }, { name: 'note' }]), (req, res) => {  // завантаження нотаток
+    const { note_name, note } = req.body; //запрошую даін з хтмл
 
     try {
-        const data = fs.readFileSync(notesFile, 'utf8');
-        const notes = data ? JSON.parse(data) : [];
+        const data = fs.readFileSync(notesFile, 'utf8'); //читаю файл з нотатками
+        const notes = data ? JSON.parse(data) : []; //парсую дані
 
         const existingNote = notes.find(n => n.note_name === note_name);
         if (existingNote) {
-            return res.status(400).send("There is already a note with this name");
+            return res.status(400).send("There is already a note with this name"); //перевірка чи така нотатка вже існує
         }
 
-        notes.push({ note_name, note });
+        notes.push({ note_name, note }); //впроваджую зміни
         fs.writeFileSync(notesFile, JSON.stringify(notes, null, 2));
         res.status(201).send("Note is uploaded succesfully");
     } catch (e) {
@@ -53,17 +53,17 @@ app.post('/upload', upload.fields([{ name: 'note_name' }, { name: 'note' }]), (r
     }
 });
 
-app.get('/notes/:noteName', (req, res) => {  // вивід нотатки з конкретним іменем
+app.get('/notes/:noteName', (req, res) => {  // вивід нотатки за іменем
     const noteName = req.params.noteName;
 
     try {
-        const data = fs.readFileSync(notesFile, 'utf8');
-        const notes = data ? JSON.parse(data) : [];
+        const data = fs.readFileSync(notesFile, 'utf8');//читаю дані з файлу
+        const notes = data ? JSON.parse(data) : []; //парусю дані
 
-        const foundNote = notes.find(note => note.note_name === noteName);
+        const foundNote = notes.find(note => note.note_name === noteName); //шукаю нотатку з таким же ж іменем
 
         if (!foundNote) {
-            return res.status(404).send("There is no such note");
+            return res.status(404).send("There is no such note"); //перевірка чи така нотатка взагалі існує
         }
 
         res.send(foundNote.note);
@@ -72,18 +72,18 @@ app.get('/notes/:noteName', (req, res) => {  // вивід нотатки з к�
     }
 });
 
-app.put('/notes/:noteName', express.text(), (req, res) => { 
+app.put('/notes/:noteName', express.text(), (req, res) => { //зміна нотатки
     const noteName = req.params.noteName;
     const note = req.body;
 
     try {
-        let data = fs.readFileSync(notesFile, 'utf8');
-        const notes = data ? JSON.parse(data) : [];
+        let data = fs.readFileSync(notesFile, 'utf8'); //читаю файл з нотатками
+        const notes = data ? JSON.parse(data) : []; //парсую дані
 
-        const foundNoteIndex = notes.findIndex(note => note.note_name === noteName);
+        const foundNoteIndex = notes.findIndex(note => note.note_name === noteName); //шукаю нотатку з таким же ж іменнем
 
         if (foundNoteIndex === -1) {
-            return res.status(404).send("There is no such note");
+            return res.status(404).send("There is no such note"); //на випадок що такої нотатки нема
         }
 
         // Заміна тексту нотатки
