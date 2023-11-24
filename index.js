@@ -13,12 +13,12 @@ if (!fs.existsSync(notesFile)) {
     fs.writeFileSync(notesFile, '[]');
 }
 
-/*app.get('/', (req, res) => { //вивід при запиті гет
+app.get('/', (req, res) => { //вивід при запиті гет
     res.send(`<h1>Запити</h1>
             1. /notes (всі нотатки) <b1>
             2. /UploadForm.html (форма для запису всіх нотатків) <b1>
             3. /notes/<note_name> (пошук окремого нотатку)<b1>`);
-})*/
+})
 
 app.get('/notes', (req, res) => { // вивід нотаток
     try {
@@ -31,7 +31,7 @@ app.get('/notes', (req, res) => { // вивід нотаток
 });
 
 app.get('/UploadForm.html', (req, res) => {  // додавання нотаток через форму
-    const path = (__dirname + '/UploadForm.html');  // вивід форми
+    const path = (__dirname + '/static/UploadForm.html');  // вивід форми
     res.sendFile(path);
 })
 
