@@ -107,7 +107,7 @@
 			"response": []
 		},
 		{
-			"name": "PUT /notes/note",
+			"name": "PUT /notes/1",
 			"request": {
 				"method": "PUT",
 				"header": [],
