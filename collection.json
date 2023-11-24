@@ -131,7 +131,7 @@
 			"response": []
 		},
 		{
-			"name": "DELETE /notes/note",
+			"name": "DELETE /notes/1",
 			"request": {
 				"method": "DELETE",
 				"header": [],
@@ -147,11 +147,6 @@
 						"note"
 					]
 				}
-			},
-			"response": []
-		}
-	]
-}
 			},
 			"response": []
 		}
