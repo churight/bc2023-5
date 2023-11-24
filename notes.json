@@ -1,11 +1,6 @@
 [
   {
-    "note_name": "note1",
-    "note": "vjdhjhwgshj"
-  },
-  {
     "note_name": "1",
-    "note": {}
-  },
-  {}
+    "note": "new text"
+  }
 ]

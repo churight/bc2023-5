@@ -1,12 +1,14 @@
 const express = require("express"); //підключаю експерс
 const fs = require("fs"); // підключаю файлову систему
 const multer = require("multer"); // підключаю мультер для роботи з файлами
+const bodyParser = require("body-parser");
 
 const upload = multer();
 const app = express();
 
-const notesFile = (__dirname + "/notes.json"); //створюю джесон файл з нотатками
 
+const notesFile = (__dirname + "/notes.json"); //створюю джесон файл з нотатками
+app.use(bodyParser.raw({type:"text:plain"}))
 if (!fs.existsSync(notesFile)) {
     fs.writeFileSync(notesFile, '[]');
 }
